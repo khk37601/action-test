@@ -1,2 +1,2 @@
 
-print('logout');
+print('logout!!');
