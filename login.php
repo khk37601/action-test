@@ -1,2 +1,2 @@
 <?php
-print('logoin');
+print('login');
