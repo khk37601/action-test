@@ -1,4 +1,4 @@
-name: Action-PHP:test
+name: release-CI
 
 on:
   push:
@@ -27,38 +27,6 @@ jobs:
 
     steps:
     - uses: actions/checkout@v3
-    
-    - uses: shivammathur/setup-php@2cb9b829437ee246e9b3cac53555a39208ca6d28
-      with:
-        php-version: ${{ matrix.php-versions }} Test on ${{ matrix.operating-system }}
-        extensions: mbstring
-        coverage: none
-        tools: phpunit:${{ matrix.phpunit-version }}, composer:v2
-
-    - name: Check PHP version
-      run: php -v
-
-    - name: Check Composer version
-      run: composer -v
-
-    - name: Validate composer.json & composer.lock
-      run: composer validate --strict
-
-    - name: Cache Composer packages
-      id: composer-cache
-      uses: actions/cache@v3
-      with:
-        path: vendor
-        key: ${{ runner.os }}-php-${{ hashFiles('**/composer.lock') }}
-        restore-keys: |
-          ${{ runner.os }}-php-
-
-    - name: Install PHP dependencies
-      run: composer install --no-interaction --no-progress --no-suggest
-
-    - name: Execute tests (Unit and Feature tests) via PHPUnit 
-      run: sh UnitTest.sh
-
     - name: Bump version and push tag
       id: tag_version
       uses: mathieudutour/github-tag-action@v6.0
