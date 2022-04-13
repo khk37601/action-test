@@ -16,13 +16,9 @@ on:
 
 jobs:
   update_release_draft:
-    if: github.event.pull_request.merged == true || github.event.push.merged == true
+    if: (github.event.pull_request.merged == true || github.event.push.merged == true) && (github.base_ref == 'main' github.base_ref == 'release/**') 
     runs-on: ubuntu-18.04
     steps:
-      - uses: shivammathur/setup-php@v2
-        with:
-          php-version: 8.1
-
       - uses: release-drafter/release-drafter@v5
         with:
           config-name: release-drafter-config.yml
