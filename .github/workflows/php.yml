@@ -44,10 +44,9 @@ jobs:
 
     - name: Install PHP dependencies
       run: composer install --no-interaction --no-progress --no-suggest
-   
+    
     - name: Run Test suite
       run: sh UnitTest.sh
-
 
     - name: Bump version and push tag
       id: tag_version
