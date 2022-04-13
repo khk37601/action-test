@@ -1,2 +1,2 @@
 <?php
-print('session');
+print('session!');
