@@ -24,6 +24,15 @@ jobs:
     - uses: shivammathur/setup-php@v2
       with:
         php-version: 8.1
+        extensions: mbstring
+        coverage: none
+        tools: phpunit:${{ matrix.phpunit-version }}, composer:v2
+
+    - name: Check PHP version
+      run: php -v
+
+    - name: Check Composer version
+      run: composer -v
 
     - name: Bump version and push tag
       id: tag_version
