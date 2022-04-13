@@ -26,7 +26,7 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     
-    - uses: shivammathur/setup-php@v2
+    - uses: shivammathur/setup-php@2cb9b829437ee246e9b3cac53555a39208ca6d28
       with:
         php-version: ${{ matrix.php-versions }} Test on ${{ matrix.operating-system }}
         extensions: mbstring
@@ -41,6 +41,15 @@ jobs:
 
     - name: Validate composer.json & composer.lock
       run: composer validate --strict
+
+    - name: Cache Composer packages
+      id: composer-cache
+      uses: actions/cache@v3
+      with:
+        path: vendor
+        key: ${{ runner.os }}-php-${{ hashFiles('**/composer.lock') }}
+        restore-keys: |
+          ${{ runner.os }}-php-
 
     - name: Install PHP dependencies
       run: composer install --no-interaction --no-progress --no-suggest
