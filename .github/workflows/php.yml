@@ -44,14 +44,8 @@ jobs:
 
     - name: Install PHP dependencies
       run: composer install --no-interaction --no-progress --no-suggest
-    
 
-    - name: Execute tests (Unit and Feature tests) via PHPUnit
-      env:
-        DATABASE_URL: sqlite:///%kernel.project_dir%/data/database.sqlite
-      run: vendor/bin/phpunit
-
-    - name: Run Test suite
+    - name: Execute tests (Unit and Feature tests) via PHPUnit 
       run: sh UnitTest.sh
 
     - name: Bump version and push tag
