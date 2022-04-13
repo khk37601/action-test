@@ -41,7 +41,7 @@ jobs:
       run: composer install --no-interaction --no-progress --no-suggest
    
     - name: Run Test suite
-      run: vendor/bin/phpunit tests/TestLogin.php
+      run: sh UnitTest.sh
 
 
     - name: Bump version and push tag
