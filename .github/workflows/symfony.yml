@@ -25,7 +25,10 @@ jobs:
     - uses: shivammathur/setup-php@2cb9b829437ee246e9b3cac53555a39208ca6d28
       with:
         php-version: ${{ matrix.php-versions }} Test on ${{ matrix.operating-system }}
-    
+        extensions: mbstring
+        coverage: none
+        tools: phpunit:${{ matrix.phpunit-version }}, composer:v2
+
     - name: Check PHP version
       run: php -v
 
